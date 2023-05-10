@@ -1,20 +1,21 @@
 //ЗАДАЧА № 1!!!!
-
-// var arr = [10, 20, 30, 50, 235, 3000, 5000439857]
+// var arr = [10, 20, 30, 50, 235, 3000, 5000439857];
 
 // for (var i = 0; i < arr.length; i++) {
-//     var num = String(arr[i])
-//     var char = num[0]
-//     if (i === 0 || i === 1 || i === 3 || i === 4 || i === 6) {
-//         console.log(arr[i])
-//     }
+//   var num = String(arr[i]);
+//   var char = num[0];
 
+//   if (char === '1' || char === '2' || char === '5') {
+//     console.log(arr[i]);
+//   }
 // }
 
 // ЗАДАЧА № 2!!!!
 
-// var num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] 
-//     console.log(num.reverse());
+
+// for(var i = 20; i >= 0; i--){
+//   console.log(i)
+// }
 
 
 
@@ -65,15 +66,12 @@
 
 
 
-var arr = []
+// var arr = []
 
-
-
-for (arr = 0; arr < 10; arr++) {
-    // arr.push(10)
-    console.log(arr);
-}
-console.log(arr);
+// for (var i = 0; i <= 10; i++) {
+//     arr.push(i )
+// }
+// console.log(arr);
 
 
 
