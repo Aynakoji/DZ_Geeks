@@ -1,0 +1,36 @@
+#counter {
+    color: black;
+  }
+#increment {
+    color: green;
+  }
+ 
+#decrement {
+    color: red;
+}
+
+.traffic-light {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  .traffic-light .light {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  .red {
+    background-color: red;
+  }
+
+  .yellow {
+    background-color: yellow;
+  }
+
+  .green {
+    background-color: green;
+  }
