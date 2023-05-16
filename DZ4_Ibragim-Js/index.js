@@ -53,7 +53,7 @@ myButton.addEventListener('click', function() {
 
 
 
-const userInput = prompt('Введите цвет светофора (Красный или Зеленый):');
+const userInput = prompt('Введите цвет светофора):');
 const trafficLight = document.querySelector('.traffic-light');
 const lowercaseInput = userInput.toLowerCase();
 
