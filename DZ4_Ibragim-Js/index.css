@@ -9,28 +9,37 @@
     color: red;
 }
 
+
 .traffic-light {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-  }
+  width: 120px;
+  height: 320px;
+  background-color: #333;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+}
 
-  .traffic-light .light {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-  }
+.light {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
 
-  .red {
-    background-color: red;
-  }
+.red {
+  background-color: #ff0000;
+}
 
-  .yellow {
-    background-color: yellow;
-  }
+.yellow {
+  background-color: #ffff00;
+}
 
-  .green {
-    background-color: green;
-  }
+.green {
+  background-color: #00ff00;
+}
+
+.active {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
