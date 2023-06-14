@@ -17,23 +17,67 @@ gmailCheck.onclick = () => {
 
 const parentBlock = document.querySelector('.parent_block');
 const moveBlock = document.querySelector('.child_block');
+const containerWidth = parentBlock.offsetWidth - moveBlock.offsetWidth;
+const containerHeight = parentBlock.offsetHeight - moveBlock.offsetHeight;
+let posX = 0;
+let posY = 0;
+let dirX = 1;
+let dirY = 1;
 
-let position = 0;
-const blockWidth = moveBlock.offsetWidth;
-const containerWidth = parentBlock.offsetWidth;
-
-moveBlock.style.position = 'absolute'; // Задаем позиционирование блока
-moveBlock.style.left = '0'; // Начальная позиция блока
+moveBlock.style.position = 'absolute';
 
 const movingBlock = () => {
-  moveBlock.style.left = position + 'px';
+    posX += dirX;
+    posY += dirY;
 
-  if (position < containerWidth - blockWidth) {
-    position += 1;
-    setTimeout(movingBlock, 10); // Интервал задержки в миллисекундах
-  }
+    moveBlock.style.transform = `translate(${posX}px, ${posY}px)`;
+
+    if (posX <= 0 || posX >= containerWidth) {
+        dirX *= -1;
+    }
+    if (posY <= 0 || posY >= containerHeight) {
+        dirY *= -1;
+    }
+
+    requestAnimationFrame(movingBlock);
 };
 
 movingBlock();
 
 
+
+
+
+
+let counterValue = 0;
+    let intervalId = null;
+
+    const counterElement = document.getElementById("counter");
+    const startBtn = document.getElementById("startBtn");
+    const stopBtn = document.getElementById("stopBtn");
+    const resumeBtn = document.getElementById("resumeBtn");
+    const clearBtn = document.getElementById("clearBtn");
+
+    const startCounter = () => {
+        intervalId = setInterval(() => {
+            counterElement.textContent = ++counterValue;
+        }, 1000);
+    };
+
+    const stopCounter = () => {
+        clearInterval(intervalId);
+    };
+
+    const resumeCounter = () => {
+        startCounter();
+    };
+
+    const clearCounter = () => {
+        counterValue = 0;
+        counterElement.textContent = counterValue;
+    };
+
+    startBtn.addEventListener("click", startCounter);
+    stopBtn.addEventListener("click", stopCounter);
+    resumeBtn.addEventListener("click", resumeCounter);
+    clearBtn.addEventListener("click", clearCounter);
