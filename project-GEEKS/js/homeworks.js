@@ -91,36 +91,114 @@ let counterValue = 0;
 
 
 
-const modal = document.querySelector('.modal');
-const modalTrigger = document.querySelector('#btn-get');
-const closeModalButton = document.querySelector('.modal_close');
+// const modal = document.querySelector('.modal');
+// const modalTrigger = document.querySelector('#btn-get');
+// const closeModalButton = document.querySelector('.modal_close');
 
-const openModal = () => {
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-};
+// const openModal = () => {
+//     modal.style.display = 'block';
+//     document.body.style.overflow = 'hidden';
+// };
 
-const closeModal = () => {
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-};
+// const closeModal = () => {
+//     modal.style.display = 'none';
+//     document.body.style.overflow = '';
+// };
 
-modalTrigger.onclick = () => openModal();
-closeModalButton.onclick = () => closeModal();
-modal.onclick = (event) => event.target === modal && closeModal();
+// modalTrigger.onclick = () => openModal();
+// closeModalButton.onclick = () => closeModal();
+// modal.onclick = (event) => event.target === modal && closeModal();
 
-const openModalEvery10Seconds = () => {
-    setInterval(openModal, 10000); // Open modal every 10 seconds
-};
+// const openModalEvery10Seconds = () => {
+//     setInterval(openModal, 10000); // Open modal every 10 seconds
+// };
 
-const checkScrollBottom = () => {
-    const scrollPosition = window.innerHeight + window.scrollY;
-    const bodyHeight = document.documentElement.offsetHeight;
-    if (scrollPosition >= bodyHeight) {
-        openModal();
+// const checkScrollBottom = () => {
+//     const scrollPosition = window.innerHeight + window.scrollY;
+//     const bodyHeight = document.documentElement.offsetHeight;
+//     if (scrollPosition >= bodyHeight) {
+//         openModal();
+//     }
+// };
+
+// window.addEventListener('scroll', checkScrollBottom);
+
+// openModalEvery10Seconds();
+
+
+
+
+
+// ДЗ №4 !
+
+
+
+const xhr = new XMLHttpRequest();
+    const url = 'path/to/people.json'; // Замените на правильный путь к вашему JSON-файлу
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        const people = JSON.parse(xhr.responseText);
+        displayPeople(people.slice(0, 3));
+      }
+    };
+
+    xhr.open('GET', url, true);
+    xhr.send();
+
+    const displayPeople = (people) => {
+      const container = document.getElementById('people-container');
+
+      people.forEach((person) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+          <h2>${person.name}</h2>
+          <p>Age: ${person.age}</p>
+          <p>Job: ${person.job}</p>
+        `;
+        container.appendChild(card);
+      });
+    };
+
+
+
+
+
+    // ДЗ №5
+
+
+
+
+
+
+const som = document.querySelector('#som')
+const usd = document.querySelector('#usd')
+const jpy = document.querySelector('#jpy')
+
+const convert = (element, targetElement, rate) => {
+  element.oninput = () => {
+    const request = new XMLHttpRequest()
+    request.open("GET", "change.json")
+    request.setRequestHeader("Content-type", "application/json")
+    request.send()
+    request.onload = () => {
+      const response = JSON.parse(request.response)
+      if (rate === 'usd') {
+        targetElement.value = (element.value / response[rate]).toFixed(2)
+      } else if (rate === 'jpy') {
+        targetElement.value = (element.value / response[rate]).toFixed(2)
+      } else {
+        targetElement.value = (element.value * response[rate]).toFixed(2)
+      }
+      element.value === '' && (targetElement.value = '')
     }
-};
+  }
+}
 
-window.addEventListener('scroll', checkScrollBottom);
-
-openModalEvery10Seconds();
+convert(som, usd, 'usd')
+convert(som, jpy, 'jpy')
+convert(usd, som, 'som')
+convert(usd, jpy, 'jpy')
+convert(jpy, som, 'som')
+convert(jpy, usd, 'usd')
